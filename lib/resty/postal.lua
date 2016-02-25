@@ -64,7 +64,7 @@ local postal = {}
 
 function postal.setup()
     assert(lib.libpostal_setup() == true, "Failed to setup libpostal.")
-    assert(lib.libpostal_setup_language_classifier() == true, "Failed tp setup libpostal language classifier.")
+    assert(lib.libpostal_setup_language_classifier() == true, "Failed to setup libpostal language classifier.")
     assert(lib.libpostal_setup_parser() == true, "Failed to setup libpostal parser.")
     initialized = true
 end
@@ -85,7 +85,7 @@ function postal.expand_address(address)
     local o = lib.get_libpostal_default_options();
     local s = ffi_new(size_t)
     local e = ffi_gc(lib.expand_address(c, o, s), lib.expansion_array_destroy)
-    return function ()
+    return function()
         i = i + 1
         if i < s[0] then return ffi_string(e[i]) end
     end
