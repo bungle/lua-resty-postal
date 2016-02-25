@@ -137,11 +137,11 @@ function postal.parse_address(address, language, country)
         end
     end
     local o = lib.get_libpostal_address_parser_default_options();
-    if language then
+    if type(language) == "string" then
         o.language = ffi_new(char_t, #language + 1, language)
     else
     end
-    if country then
+    if type(country) == "string" then
         o.country = ffi_new(char_t, #country + 1, country)
     end
     local c = ffi_new(char_t, #address + 1, address)
